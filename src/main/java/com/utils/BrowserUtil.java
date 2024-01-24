@@ -37,13 +37,11 @@ public class BrowserUtil {
 		WebElement ele = wait.until(ExpectedConditions.elementToBeClickable(locator));
 		ele.click();
 	}
-
-
 	
-	
-	
-	
-	
-	
+	public String readText(By locator) {
+		WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+		String text = ele.getText();
+		return text;
+	}
 
 }
