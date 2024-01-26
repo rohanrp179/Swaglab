@@ -43,5 +43,17 @@ public class BrowserUtil {
 		String text = ele.getText();
 		return text;
 	}
+	
+	public void sleepFor(int time) {
+		try {
+			Thread.sleep(time);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public boolean elementVisibility(By locator) {
+		return wd.findElement(locator).isDisplayed();
+	}
 
 }
