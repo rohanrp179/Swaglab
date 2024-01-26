@@ -1,18 +1,15 @@
 package com.ui.tests;
 
-import static org.testng.Assert.assertEquals;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
 import com.ui.pages.LoginPage;
 
-public class LoginTest {
+public class HappyFlowTest {
 
 	private WebDriver wd;
 	private LoginPage loginPage;
@@ -28,9 +25,12 @@ public class LoginTest {
 		wd.quit();
 	}
 
-	@Test(description = "Validate successful login")
-	public void testLogin() {
-		Assert.assertEquals(loginPage.doLogin("standard_user", "secret_sauce").isCartIconVisible(), true,"The username or password is not valid");
+	@Test(description = "Validate a complete order flow", groups = { "regression" })
+	public void testSuccessfulCompletionOfOrder() {
+		Assert.assertEquals(loginPage.doLogin("standard_user", "secret_sauce").addProductToCart().clickOnCartIcon()
+				.clickOnCheckoutButton().fillCheckoutInfoDetails("Abc", "XYZ", "112020")
+				.clickOnContinueToCheckoutOVerview().completeOrder().readBackHomeTextOnSuccessfulOrderCompletion(),
+				"Back Home");
 	}
 
 }

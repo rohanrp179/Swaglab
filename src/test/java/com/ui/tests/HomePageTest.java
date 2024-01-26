@@ -1,18 +1,14 @@
 package com.ui.tests;
 
-import static org.testng.Assert.assertEquals;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
 import com.ui.pages.LoginPage;
 
-public class LoginTest {
+public class HomePageTest {
 
 	private WebDriver wd;
 	private LoginPage loginPage;
@@ -25,12 +21,17 @@ public class LoginTest {
 
 	@AfterMethod
 	public void tearDown() {
-		wd.quit();
+//		wd.quit();
 	}
 
-	@Test(description = "Validate successful login")
-	public void testLogin() {
-		Assert.assertEquals(loginPage.doLogin("standard_user", "secret_sauce").isCartIconVisible(), true,"The username or password is not valid");
+	@Test(description = "Validate product successfully added to cart", groups = { "sanity" })
+	public void testAddingProductToCart() {
+		loginPage.doLogin("standard_user", "secret_sauce").addProductToCart().clickOnCartIcon();
+	}
+	
+	@Test(description = "Validate product removal on clicking on remove button") 
+	public void testRemoveButtonFunctionality() {
+		loginPage.doLogin("standard_user", "secret_sauce").addProductToCart().clickOnCartIcon().clickOnRemoveProduct();
 	}
 
 }

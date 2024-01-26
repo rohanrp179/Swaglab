@@ -24,8 +24,9 @@ public class CartPage extends BrowserUtil {
 		return productName;
 	}
 	
-	public void clickOnRemove() {
+	public CartPage clickOnRemoveProduct() {
 		clickOn(REMOVE_PRODUCT_BUTTON_LOCATOR);
+		return new CartPage(wd);
 	}
 	
 	public HomePage clickOnContinueShoppingButton() {

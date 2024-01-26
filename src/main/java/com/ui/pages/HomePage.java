@@ -22,8 +22,9 @@ public final class HomePage extends BrowserUtil {
 		String productName = readText(PRODUCT_NAME_TEXT_LOCATOR);
 		return productName;
 	}
-	public void addProductToCart() {
+	public HomePage addProductToCart() {
 		clickOn(ADD_TO_CART_BUTTON_LOCATOR);
+		return new HomePage(wd);
 	}
 	
 	public CartPage clickOnCartIcon() {

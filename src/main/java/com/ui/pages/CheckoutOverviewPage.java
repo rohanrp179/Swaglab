@@ -12,6 +12,7 @@ public class CheckoutOverviewPage extends BrowserUtil {
 	private static final By TOTAL_FINAL_ITEM_PRICE_TEXT_LOCATOR = By.xpath("//div[@class='summary_info_label summary_total_label']");
 	private static final By FINISH_BUTTON_LOCATOR = By.id("finish");
 	private static final By CANCEL_BUTTON_LOCATOR = By.id("cancel");
+	private static final By BACK_TO_HOME_TEXT_LOCATOR = By.id("back-to-products");
 	
 	private WebDriver wd;
 	
@@ -35,14 +36,21 @@ public class CheckoutOverviewPage extends BrowserUtil {
 		return totalFinalProductValue;
 	}
 	
-	public void completeOrder() {
+	public CheckoutOverviewPage completeOrder() {
 		clickOn(FINISH_BUTTON_LOCATOR);
+		return new CheckoutOverviewPage(wd);
 	}
 	
 	public HomePage cancelOrderFromFinalCheckoutStage() {
 		clickOn(CANCEL_BUTTON_LOCATOR);
 		return new HomePage(wd);
 	}
+	
+	public String readBackHomeTextOnSuccessfulOrderCompletion() {
+		return readText(BACK_TO_HOME_TEXT_LOCATOR);
+	}
+	
+	
 	
 	
 

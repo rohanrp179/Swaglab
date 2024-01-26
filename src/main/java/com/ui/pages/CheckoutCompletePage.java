@@ -20,10 +20,11 @@ public class CheckoutCompletePage extends BrowserUtil {
 		this.wd = wd;
 	}
 	
-	public void fillCheckoutInfoDetails(String firstName, String lastName, String postalCode) {
+	public CheckoutCompletePage fillCheckoutInfoDetails(String firstName, String lastName, String postalCode) {
 		enterText(FIRST_NAME_TEXTBOX_LOCATOR, firstName);
 		enterText(LAST_NAME_TEXTBOX_LOCATOR, lastName);
 		enterText(POSTAL_CODE_TEXTBOX_LOCATOR, postalCode);
+		return new CheckoutCompletePage(wd);
 	}
 	
 	public CheckoutOverviewPage clickOnContinueToCheckoutOVerview() {
