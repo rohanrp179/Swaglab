@@ -27,6 +27,10 @@ public class BrowserUtil {
 		wd.manage().window().maximize();
 	}
 	
+	public void minimizeBroswer() {
+		wd.manage().window().minimize();
+	}
+	
 	public void enterText(By locator, String textToEnter) {
 		WebElement ele = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 		ele.clear();
